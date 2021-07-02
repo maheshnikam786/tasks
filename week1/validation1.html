@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mahesh</title>
+</head>
+<body>
+<div >
+	<form>
+	<label for="name1">Name:</label>
+	<input type="text" name="" id="name1">
+	<br>
+	<label for="surname1"> Surname:</label>
+	<input type="text" id="surname1">
+	<br>
+	<label for="gmail1">Gmail:</label>
+	<input type="text" id="gmail1">
+	<br>
+	<label for="select">Date of birth:</label>
+	<select id="select">
+		<option  >Default</option> 
+	</select>
+	<br>
+	
+	<label for="state">State:</label>
+	<select id="state">
+		<option  >Default</option> 
+	</select>
+	<br>
+	</form>
+	<button onclick="showDetails()">Show Data</button>
+	<button onclick="DeleteRow()">Delete Data</button>
+	<br>
+	<table  id="tab"></table>
+</div>
+
+	<script type="text/javascript">
+
+		var select= document.getElementById("select");
+		date1=[1999,2000,2001,2002,2003,2004,2005];
+
+		for(var i=0;i<date1.length;i++){
+			var option= document.createElement("option");
+			txt=document.createTextNode(date1[i]);
+			option.appendChild(txt);
+			option.setAttribute("value",date1[i]);
+			select.insertBefore(option,select.lastChild);
+		}
+
+		var select= document.getElementById("state");
+		state1=["Assam","Maharashtra","Kashmir","Tamilnadu","Delhi"];
+
+		for(var i=0;i<state1.length;i++){
+			var option= document.createElement("option");
+			txt=document.createTextNode(state1[i]);
+			option.appendChild(txt);
+			option.setAttribute("value",state1[i]);
+			select.insertBefore(option,select.lastChild);
+		}
+
+		function showDetails(){
+			// console.log("hii")
+			var p=[];
+			var name=document.getElementById('name1').value
+			p.push(name)
+			var surname= document.getElementById('surname1').value
+			p.push(surname)
+			var gmail=document.getElementById('gmail1').value
+			p.push(gmail)
+			var datee=document.getElementById('select').value
+			p.push(datee)
+			var state=document.getElementById('state').value
+			p.push(state)
+
+			//var c=["Name","Surname","Gmail","dob","state"];
+
+			if(name==""){
+				alert("Please Enter Name");
+				return;
+			}
+			if(surname==""){
+				alert("Please Enter Surname");
+				return; 
+			}
+			if(gmail==""){
+				alert("Please Enter Gmail");
+				return;
+			}
+			if(datee=="Default"){
+				alert("Please Enter Date of birth");
+				return; 
+			}
+			if(state=="Default"){
+				alert("Please Enter State");
+				return; 
+			}
+
+			var table=document.getElementById('tab');
+			var tr=document.createElement('tr');
+
+			for(var i=0;i<5;i++){
+				var labelName=document.getElementsByTagName("label")[i].innerHTML;
+				var td=document.createElement('td');
+				var text=document.createTextNode(labelName +""+ p[i]);
+				td.appendChild(text);
+				tr.appendChild(td);
+			}
+			
+			// var td=document.createElement('td');
+			// var text=document.createTextNode("Surname:" + surname);
+			// td.appendChild(text);
+			// tr.appendChild(td);
+
+			// var td=document.createElement('td');
+			// var text=document.createTextNode("Gmail:" + gmail);
+			// td.appendChild(text);
+			// tr.appendChild(td);
+
+			// var td=document.createElement('td');
+			// var text=document.createTextNode("Date of birth: " + datee);
+			// td.appendChild(text);
+			// tr.appendChild(td);
+
+			// var td=document.createElement('td');
+			// var text=document.createTextNode("State: " + state);
+			// td.appendChild(text);
+			// tr.appendChild(td);
+
+			table.appendChild(tr);
+		}
+
+	 		function DeleteRow(){
+	 			if(document.getElementById('name1').value==""){
+	 				alert("Please Enter Name Before Deleting");
+	 			}
+	 			document.getElementById('tab').innerHTML="";
+			    document.getElementById('name1').value="";
+			    document.getElementById('surname1').value="";
+			    document.getElementById('gmail1').value="";
+			    document.getElementById('select').value="Default";
+			    document.getElementById('state').value="Default";
+
+	 		}
+	</script>
+</body>
+</html>
