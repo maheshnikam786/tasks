@@ -17,4 +17,13 @@ Week 1:
     6. Have a button to reset the data 
     akshaytoshniwal14@gmail.com
   
+Week 2:
 
+    Problem Statement:
+
+    1. Create a form with 7 fields: name, email, mobile no., date of birth, state, city, password.
+    2. Populate date of birth drop down, state, and city, using ng-repeat
+    3. Display 10 records, in a table format
+    4. Create a filter by name and email searching
+    5. Create a button to order the values by name or by email. (Two buttons, one for name and one for email).
+    6. For the input button, if the input is blank, the color should change to red and if input is given, the color should be normal which is white.
