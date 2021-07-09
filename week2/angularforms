@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<title>Angular_form</title>
+</head>
+<body>
+<style>
+input.ng-empty{
+    border-color: red;
+}
+</style>
+
+<div ng-app="myApp" ng-controller="formCtrl" >
+<form >
+    <label for="name">Name:</label>
+	<input  type="text" name=""  ng-model="name" id="name" >    
+	<br>
+	<label for="email"> Email:</label>
+    <input type="text" id="email" ng-model="email"> 
+	<br>
+	<label for="mobile">Mobile No:</label>
+	<input type="text" id="mobile" ng-model="mobile"> 
+	<br>
+	<label for="dob">Date of birth:</label>
+	<select id="dob" >
+		<option  ng-repeat=" date_of_b in dob" >{{ date_of_b}}</option> 
+	</select>
+	<br>	
+ <label for="state">State:</label> 
+	<select id="state"> 
+		<option   ng-repeat=" state2 in states">{{state2}}</option> 
+	</select>
+	<br>
+	<label for="city">City:</label>
+	<select id="city"  >
+		<option ng-repeat=" city2 in city">{{city2 }}</option> 
+	</select>
+	<br>
+	 <label for="password">Password:</label>
+ 	<input type="text" name="" id="password" ng-model="password"> 
+	<br>
+</form>
+
+<button ng-click="addinfo()">Add info</button>
+<br>	
+<br>
+<table border=".1"> 
+	<tr>
+		<th>Name</th>
+		<th>Email</th>
+		<th>Mobile No</th>
+		<th>Date of birth</th>
+		<th>State</th>
+		<th>City</th>
+		<th>Password</th>
+	</tr>
+	<tr ng-repeat = 'x in info | orderBy: myOrderBy '>
+	<td>{{x.name}}</td>
+	<td>{{x.email}}</td>
+	<td>{{x.mobile}}</td>
+	<td>{{x.dob}}</td>
+	<td>{{x.state}}</td>
+	<td>{{x.city}}</td>
+	<td>{{x.password}}</td>
+	</tr>
+	
+</table> 
+<br>	
+<button ng-click="sort1('email')">Sort Email </button>
+<button ng-click="sort1('name')" >Sort Name </button>
+<br><br>
+<input type="text" name="searchidname" ng-model="searchtext" placeholder="Enter name or gmail to search.">
+<br><br>
+<table border=".1"> 
+	<tr>
+		<th>Name</th>
+		<th>Email</th>
+		<th>Mobile No</th>
+		<th>Date of birth</th>
+		<th>State</th>
+		<th>City</th>
+		<th>Password</th>
+	</tr>
+	<tr ng-repeat = "x in info  |  filter:search ">
+	<td>{{x.name}}</td>
+	<td>{{x.email}}</td>
+	<td>{{x.mobile}}</td>
+	<td>{{x.dob}}</td>
+	<td>{{x.state}}</td>
+	<td>{{x.city}}</td>
+	<td>{{x.password}}</td>
+	</tr>	
+</table>
+
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('formCtrl', function($scope) {
+
+$scope.info=[
+			{'name':"aalu", 'email':"aalu@gmail.com"  , 'mobile':987756545 , 'dob':2000 , 'state':"maharashtra" , 'city':"thane" ,'password':"aalu1223"},
+			{'name':"calvin", 'email':"calvin2@gmail.com"  , 'mobile':9976786556 , 'dob':2001 , 'state':"maharashtra" , 'city':"thane" ,'password':"calvin23"},
+			{'name':"binod", 'email':"cbinod233@gmail.com"  , 'mobile':346356454 , 'dob':2002 , 'state':"assam" , 'city':"delhi" ,'password':"binod11"},
+			{'name':"david", 'email':"david@gmail.com"  , 'mobile':43537545 , 'dob':2005 , 'state':"gujarat" , 'city':"thane" ,'password':"david988"},
+			{'name':"kelvin", 'email': "imkelvin@gmail.com" , 'mobile':45908967 , 'dob':2007 , 'state':"kerala" , 'city':"thane" ,'password':"kelvin654"},
+			{'name':"guddu", 'email':"guddu@gmail.com"  , 'mobile':354454533, 'dob':2008 , 'state':"karnataka" , 'city':"pune" ,'password':"guddu423"}
+			];
+		$scope.dob=[1999,2000,2001,2002,2003,2004,2005,2006,2007,2008];
+   		$scope.states=['maharashtra','gujarat','assam','karnataka','kerala'];
+   		$scope.city=['mumbai','thane','pune','delhi'];
+
+   $scope.addinfo=function(){
+
+   	var name1=document.getElementById('name').value
+   	var email1=document.getElementById('email').value
+   	var mobile1=document.getElementById('mobile').value
+   	var dob1=document.getElementById('dob').value
+   	var state1=document.getElementById('state').value
+   	var city1=document.getElementById('city').value
+   	var password1=document.getElementById('password').value
+
+		$scope.info.push({'name': name1 , 'email': email1 , 'mobile':mobile1 , 'dob': dob1 , 'state': state1 , 'city': city1, 'password':password1 });  		
+   }
+   console.log($scope.info)
+
+   $scope.sort1=function(x){
+   	 $scope.myOrderBy= x;
+
+   }
+ $scope.search =function (item) {
+
+ 
+ 	return (item.name.indexOf($scope.searchtext)!= -1  || item.email.indexOf($scope.searchtext)!= -1  )
+ };
+
+});
+</script>
+
+</body>
+</html>
