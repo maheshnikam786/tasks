@@ -29,8 +29,9 @@ Week 2:
     6. For the input button, if the input is blank, the color should change to red and if input is given, the color should be normal which is white.
    
 week 3:
+
         Problem Statement:
-        1. Create a form with 4 fields - registration form (Name, Email, Mobile, Password)
+        1. Create a form with 4 fields - registration form (Name, Email, Mobile, Password) 
         2. Name, Email, and Password are mandatory and Mobile is optional
         3. Apply Angular input validations on the same
         4. Button should be disabled if any mandatory data is not filled
@@ -44,6 +45,7 @@ week 3:
         8. Give functionality to delete any record if added. You will have a button to delete the data that is added
         
 week 4:
+
         Problem Statement:
         1. Create a registration form - registered user array
         2. Create a login form - login will be done by comparing the value entered with the value in the registered array.
