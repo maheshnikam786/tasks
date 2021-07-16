@@ -129,7 +129,7 @@ console.log(mail_index=$scope.registered.findIndex(x=>x.email===$scope.email1))
 console.log(paasword_index=$scope.registered.findIndex(x=>x.password===$scope.password1))
 
 
-if( paasword_index===mail_index ){
+if( (paasword_index===mail_index ) && paasword_index>=0 && mail_index >=0 ){
 	
 	$scope.check=true
 
