@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<head>
+	<title>angular</title>
+</head>
+<body>
+	
+		<form ng-app="myModule" ng-controller="firstController" name="myForm" novalidate >
+			<h3>Registration Form</h3>
+			<p>Username<br>
+			<input type="text" name="user" ng-model="user" required>
+			<span style="color: red" ng-show="myForm.user.$invalid ">
+			<span ng-show="myForm.user.$error.required">User name must</span>
+		</span>
+	</p>
+			<p>Gmail<br>
+			<input type="email" name="email" ng-model="email" required>
+		
+			<span style="color: red" ng-show="myForm.email.$invalid ">
+			<span ng-show="myForm.email.$error.required"> Gmail is must</span>
+			<span ng-show="myForm.email.$error.email"> Gmail is invalid</span>
+		</span>
+	</p>
+	<p>Password<br>
+			<input type="" name="password" ng-model="password" required>
+			<span style="color: red" ng-show="myForm.password.$pristine">
+			<span ng-show="myForm.password.$error.required"> Password is must</span>	
+		</span>
+	</p>
+	
+	<p>
+		<input type="submit"  ng-click="addinfo()">
+
+		</p>
+<h3>Login Form</h3>
+			<p>Gmail<br>
+			<input type="email1" name="email1" ng-model="email1" required>
+		
+			
+	</p>
+	<p>Password<br>
+			<input type="" name="password1" ng-model="password1" required>
+			
+	</p>
+	<input type="submit" value="login"  ng-click="add()">
+
+
+	<span ng-show="check" style="color: red">Login successful	
+	</span>
+	<span ng-show="fail" style="color: red">Pls register or Enter correct details</span>
+	
+		<br>
+	
+		<h3>Product Page</h3>
+		
+		
+			<div ng-repeat="x in products ">
+				<div>{{x.id}})ITEM</div>
+				<div>{{x.pname}}</div>
+				<div>{{x.pdesc}}</div>
+				<img ng-src={{x.pimg}}> </img>
+				<div>{{x.price }} RS</div>
+				<div>-----------------------------</div>
+			</div>
+			<input type="text" name="searchpin" ng-model="searchpin" placeholder="Pls enter pincode" >
+			<div ng-repeat="pin in pincode |  filter: searchpinplx ">
+			</div>
+				<div ng-show='available' >Available</div>
+			<div ng-show='notavailable' style="color: red">Not available</div>
+		<br>
+
+		<input type="text" name="searchuser" placeholder="search user" ng-model="searchuser">
+
+		<table border="1">
+			<th >Username</th>
+			<tr ng-repeat="us in registered  | filter:searchuser">
+			<td>{{us.user}}</td>
+			</tr>
+		</table>
+		
+		
+		<br><br>
+		<input type="text" name="searchpro" ng-model="searchpro" placeholder="Search products">
+		<div ng-repeat="pro in products | filter:searchpro">
+			<div>{{pro.id}}</div>
+			<div>{{pro.pname}}</div>
+			<div>{{pro.pdesc}}</div>
+			<img ng-src="{{pro.pimg}}"></img>
+			<div>{{pro.price}}RS</div>
+		</div>
+</form>
+
+
+
+
+<script type="text/javascript">
+	var app=angular.module("myModule",[]);
+	
+	app.controller('firstController',function($scope){
+	$scope.registered=[]
+
+ $scope.pincode=["421605","400603","400037","400604"];
+
+	$scope.products=[{'id':1,'pname':'cake','pdesc':'Lava Chocolate cake with oreo biscuit','pimg':"imag/cake.jpg",'price':200},
+	{'id':2,'pname':'biscuit','pdesc':'Salty biscuits that can be served as a snack','pimg':"imag/biscuits.jpg",'price':20},
+	{'id':3,'pname':'soap','pdesc':'Refreshing Deodorant Soap that Revitalizes your senses','pimg':"imag/soap.jpg",'price':20}
+	]
+
+var c=$scope.email1
+$scope.addinfo=function(item){
+
+var d=$scope.email
+var g=$scope.password
+var u=$scope.user
+			$scope.registered.push({'user':u,'email':d ,'password':g});
+			console.log($scope.registered)
+
+}
+
+
+
+$scope.add=function(){
+	
+$scope.check=false
+$scope.fail=false
+
+console.log(mail_index=$scope.registered.findIndex(x=>x.email===$scope.email1))
+console.log(paasword_index=$scope.registered.findIndex(x=>x.password===$scope.password1))
+
+
+if( paasword_index===mail_index ){
+	
+	$scope.check=true
+
+}else{
+	
+	$scope.check=false;
+	$scope.fail=true
+}
+
+}
+
+$scope.searchpinplx=function(x){
+ $scope.available=false;
+$scope.notavailable=false;
+
+// console.log($scope.pincode)
+	// console.log($scope.pincode.indexOf(400603))
+if($scope.pincode.indexOf($scope.searchpin)!=-1){
+	
+	$scope.available=true
+
+}else{
+$scope.notavailable=true
+
+}
+
+}
+
+
+
+	});
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
