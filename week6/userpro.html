@@ -1,0 +1,103 @@
+<html>
+<head>
+
+ <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head><style>
+
+input[type=text],input[type=email], input[type=password] {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+
+        label{
+            cursor: pointer;
+            display: inline-block;
+            padding: 3px 6px;
+            text-align: right;
+            width: 150px;
+            vertical-align: center;
+        }
+
+</style>
+<body>
+  <form ng-app="usepr" ng-controller="useprcontroller" name="validateform" novalidate>
+    <fieldset>
+    <div class="signupbox" style="background-color:cyan ; margin-left:200px; margin-right: 300px ;margin-top: 50px;padding-top: 50px ;padding-bottom: 50px ;border-style: solid" >
+  <div style="margin-left: 100px">
+    <div style="margin-right: 100px">
+      <div class="container">
+      <div class="row">
+        <h2 style="margin-left: 250px">User Profile</h2>
+        <div class="col-md-6">
+          <center>
+          <img src="imag/mssi12.jpg" alt="Avatar" class="avatar"><br><span></span>
+          <label>First Name:</label>
+          <input type="text" name="fname" ng-model="fname" placeholder="FirstName" align="left"><br>
+         <label> Last Name:</label>
+    <input type="text" name="lname" ng-model="lname" placeholder="LastName" required/><br>  
+          <label>Email Id:</label>    
+    <input type="email" name="email" ng-model="email" placeholder="Email" required/><br>
+    <label>Mobile No.:</label>
+<input type="text" name="mobileno" ng-model="mobileno" placeholder="Mobileno" required/><br>
+<label>City:</label>
+    <input type="text" name="city" ng-model="city" placeholder="City" required/>
+    <br>
+    <button class="btn btn-primary" ng-click="editinfo()">Save Info</button>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</fieldset>
+  </form>
+  <script>
+    var app = angular.module("usepr",[]);
+        app.controller('useprcontroller',function($scope)
+
+        {    
+              var ffname= localStorage.getItem('fname');
+                var llname=localStorage.getItem('lname');
+                var emaillid= localStorage.getItem('email');
+                var mobilenumber=localStorage.getItem('mobileno');
+                var cityyname=localStorage.getItem('city');
+
+                $scope.fname=ffname;
+                $scope.lname=llname;
+                $scope.email=emaillid;
+                $scope.mobileno=mobilenumber;
+                $scope.city=cityyname;
+
+                
+             $scope.editinfo=function()
+                {
+                 localStorage.setItem('fname',$scope.fname);
+            localStorage.setItem('lname',$scope.lname);
+            localStorage.setItem('email',$scope.email);
+            localStorage.setItem('mobileno',$scope.mobileno);
+            localStorage.setItem('city',$scope.city); 
+         
+                }
+            });
+  </script>
+  </body>
+  </html>
