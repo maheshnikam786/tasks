@@ -1,0 +1,98 @@
+<html>
+<head>
+  <title>Form</title>
+ <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+
+
+
+input[type=text],input[type=email], input[type=password] {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+
+
+</style>
+<body>
+  <form ng-app="form" ng-controller="formcontroller" name="formval" novalidate>
+    <div class="signupbox" style="background-color:cyan; margin-right:50px;margin-left: 50px;margin-top: 50px;padding-top: 50px ;padding-bottom: 50px ;border-style: solid" >
+  <div style="margin-left: 400px">
+    <div style="margin-right: 100px">
+      <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <input type="text" name="fname" ng-model="fname" placeholder="FirstName" required/>
+    <span style="color:red" ng-show="formval.fname.$invalid && formval.fname.$invalid">
+      <span ng-show="formval.fname.$error.required">Firstname is required</span>
+    </span>
+    <input type="text" name="lname" ng-model="lname" placeholder="LastName" required/>
+    <span style="color:red" ng-show="formval.lname.$invalid && formval.lname.$invalid">
+      <span ng-show="formval.lname.$error.required">Lastname is required</span>
+    </span>        
+    <input type="email" name="email" ng-model="email" placeholder="Email" required/>
+            <span style="color:red" ng-show="formval.email.$invalid && formval.email.$invalid">
+            <span ng-show="formval.email.$error.required">Email is required</span>
+            <span ng-show="formval.email.$error.email">Email Format is Incorrect</span>
+</span>
+<input type="text" name="mobileno" ng-model="mobileno" placeholder="Mobileno" required/>
+    <span style="color:red" ng-show="formval.mobileno.$invalid && formval.mobileno.$invalid">
+      <span ng-show="formval.mobileno.$error.required">Mobileno is required</span>
+    </span>
+    <input type="password" name="pswd" ng-model="pswd" placeholder="Password" required/>
+    <span style="color:red" ng-show="formval.pswd.$invalid && formval.pswd.$invalid">
+      <span ng-show="formval.pswd.$error.required">Password is required</span>
+    </span>
+
+    <input type="password" name="cpswd" ng-model="cpswd" placeholder="Confirm Password" required/>
+    <span style="color:red" ng-show="formval.cpswd.$invalid && formval.cpswd.$invalid">
+      <span ng-show="formval.cpswd.$error.required">Password is required</span>
+    </span>
+
+    <input type="text" name="city" ng-model="city" placeholder="City" required/>
+    <span style="color:red" ng-show="formval.city.$invalid && formval.city.$invalid">
+      <span ng-show="formval.city.$error.required">City is required</span>
+    </span>
+    <br>
+    <input type="checkbox" name="check" ng-model="check">&emsp;<b>Click here to agree with the terms and conditions</b><br>
+      <button class="btn btn-primary" ng-disabled="formval.fname.$invalid || formval.email.$invalid || formval.pswd.$invalid || formval.cpswd.$invalid || formval.mobileno.$invalid || formval.city.$invalid || formval.lname.$invalid || !check" ng-click="infosav()">SUBMIT</button>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+  </form>
+  <script>
+    var app = angular.module("form",[]);
+        app.controller('formcontroller',function($scope)
+        {
+
+          $scope.infosav=function()
+            {
+    
+              localStorage.setItem('fname',$scope.fname);
+            localStorage.setItem('lname',$scope.lname);
+            localStorage.setItem('email',$scope.email);
+            localStorage.setItem('mobileno',$scope.mobileno);
+            localStorage.setItem('city',$scope.city);
+            localStorage.setItem('pswd',$scope.pswd);
+             localStorage.setItem('cpswd',$scope.cpswd);
+            location.href="userpro.html";
+            }
+            });
+  </script>
+  </body>
+  </html>
